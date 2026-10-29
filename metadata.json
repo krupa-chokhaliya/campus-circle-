@@ -1,0 +1,6 @@
+{
+  "name": "CampusCircle",
+  "description": "College-exclusive community platform for GEC Bharuch students featuring feeds, anonymous posts, commute hub, and local guide.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

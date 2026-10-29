@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+    <!-- Outer Orbit Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#FF80B5"
+        android:strokeWidth="2.5"
+        android:strokeAlpha="0.8"
+        android:pathData="M54,29 A25,25 0 1,1 53.9,29 Z" />
+
+    <!-- Tilted Elliptical Orbit Ring -->
+    <path
+        android:fillColor="#00000000"
+        android:strokeColor="#9B5DE5"
+        android:strokeWidth="2"
+        android:strokeAlpha="0.7"
+        android:pathData="M32,42 C38,32 70,32 76,42 C82,52 76,74 54,74 C32,74 26,52 32,42 Z" />
+
+    <!-- Center 4-Pointed Star -->
+    <path
+        android:fillColor="#F72585"
+        android:pathData="M54,38 L57.5,50.5 L70,54 L57.5,57.5 L54,70 L50.5,57.5 L38,54 L50.5,50.5 Z" />
+
+    <!-- Center Core Glow Point -->
+    <path
+        android:fillColor="#FFFFFF"
+        android:pathData="M54,50 A4,4 0 1,1 53.9,50 Z" />
+
+    <!-- Community Student Node Dots -->
+    <path
+        android:fillColor="#FF80B5"
+        android:pathData="M54,27 A3,3 0 1,1 53.9,27 Z" />
+    <path
+        android:fillColor="#9B5DE5"
+        android:pathData="M78,54 A3,3 0 1,1 77.9,54 Z" />
+    <path
+        android:fillColor="#F72585"
+        android:pathData="M54,80 A3,3 0 1,1 53.9,80 Z" />
+    <path
+        android:fillColor="#FF80B5"
+        android:pathData="M29,54 A3,3 0 1,1 28.9,54 Z" />
+</vector>

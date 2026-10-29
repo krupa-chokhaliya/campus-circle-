@@ -1,0 +1,726 @@
+# PROJECT: CAMPUSCIRCLE — COLLEGE-EXCLUSIVE SOCIAL COMMUNITY APP
+
+## 1. YOUR ROLE
+
+Act as a senior Android engineer, product designer, backend architect, database designer, and application security engineer. Build a high-quality, modern, mobile-first native Android application named CampusCircle.
+
+Do not create only a UI prototype. Implement real navigation, functional interactions, authentication, persistent database storage, community feeds, posts, comments, voting, search, and appropriate loading, empty, and error states.
+
+Make sensible engineering decisions without repeatedly asking me basic questions. Prioritize a reliable MVP with a clean architecture and an upgrade path to a production application.
+
+## 2. PRODUCT VISION
+
+CampusCircle is a college-exclusive community platform inspired by Reddit, with elements of anonymous discussion platforms and local discovery applications.
+
+Initial target community: students of Government Engineering College, Bharuch (GEC Bharuch), Gujarat, India.
+
+The app should help students:
+
+- Connect with other students from the same college.
+- Create and join topic-specific communities.
+- Publish posts and participate in threaded discussions.
+- Post anonymously when appropriate.
+- Share commute information for students travelling between Vadodara, Bharuch, Surat, and other locations.
+- Exchange practical advice about trains, routes, delays, and daily up-down travel.
+- Discover affordable food, tiffin services, PGs, rooms, libraries, and useful places in Bharuch.
+- Help juniors with academics, college life, placements, internships, and practical advice.
+- Share events, memes, polls, questions, and campus experiences.
+- Communicate safely with other students.
+
+The experience should feel like a real student community, not a generic corporate dashboard or an AI chatbot.
+
+Use CampusCircle as the working name and make branding easy to change later.
+
+## 3. PLATFORM AND TECHNOLOGY
+
+Build a native Android application using:
+
+- Kotlin.
+- Jetpack Compose.
+- Material 3 components customized to the app's visual identity.
+- Navigation Compose.
+- MVVM architecture with clear UI, domain, and data layers where appropriate.
+- Kotlin Coroutines and Flow for asynchronous operations and reactive data.
+- Firebase Authentication.
+- Cloud Firestore for persistent data and real-time updates.
+- Firebase Storage for user-uploaded images.
+- Firebase Cloud Messaging for push notifications when configured.
+- Firebase App Check and Firestore Security Rules where supported.
+- Repository pattern to separate UI from data access.
+- Dependency injection using a suitable lightweight approach or Hilt if appropriate.
+
+Use stable, mutually compatible dependencies. Do not invent package names, SDK APIs, Firebase configuration values, credentials, or external service endpoints.
+
+Use a package namespace such as com.campuscircle.app, and make it configurable.
+
+If a Firebase project or credential is unavailable, implement the integration structure, provide a clear setup checklist, and show an honest configuration screen or development mode. Do not pretend that cloud services are connected when they are not.
+
+Never put privileged secrets in client-side code.
+
+## 4. VISUAL DESIGN SYSTEM
+
+Use the attached reference image as inspiration for the visual language, not as a screen to reproduce literally.
+
+Design direction:
+- Premium dark-mode-first interface.
+- Deep black and charcoal backgrounds.
+- Magenta, rose pink, and subtle purple gradients.
+- Rounded cards with thin pink-tinted borders.
+- Soft ambient glow around primary actions.
+- Clean typography, strong hierarchy, generous spacing, and readable body text.
+- Minimal line icons.
+- Subtle motion and polished transitions.
+- Carefully designed loading skeletons and empty states.
+- A cohesive component system with consistent padding, corner radii, and typography.
+
+Suggested colors:
+- Main background: #09070C.
+- Surface: #17141C.
+- Elevated surface: #24202A.
+- Primary pink: #F72585.
+- Secondary pink: #FF80B5.
+- Purple accent: #9B5DE5.
+- Primary text: #F8F5FA.
+- Secondary text: #B9B2C1.
+- Error: an accessible red tone.
+
+Use gradients sparingly for the logo, primary buttons, selected navigation items, and important highlights.
+
+Provide a light theme as a secondary option, with persistent theme preference.
+
+Accessibility requirements:
+- Support different screen sizes and Android display scaling.
+- Respect system font scaling.
+- Use sufficient contrast and meaningful content descriptions.
+- Provide touch targets of approximately 48dp or larger.
+- Handle system navigation, keyboard visibility, status bars, and bottom navigation insets correctly.
+- Support back navigation and preserve appropriate screen state.
+
+Avoid excessive animations, oversized empty headers, horizontal overflow, and decorative elements that reduce readability.
+
+## 5. APP NAVIGATION
+
+Create five primary bottom-navigation destinations:
+
+1. Home
+2. Explore
+3. Create
+4. Commute
+5. Profile
+
+Use a floating or clearly emphasized Create action while keeping the layout accessible.
+
+Add top-bar actions for:
+- Global search.
+- Notifications.
+- Inbox and messages.
+- Account or settings access where appropriate.
+
+Use a proper navigation graph. Each button must open its intended screen. Back navigation must work correctly.
+
+## 6. SPLASH SCREEN AND ONBOARDING
+
+Create:
+- Branded splash screen with a custom star/orbit-inspired CampusCircle logo.
+- Welcome screen explaining the college community.
+- Sign-in and registration screens.
+- Google sign-in where configured.
+- College selection and student verification.
+- Username and avatar selection.
+- Optional department, branch, year, semester, interests, and usual commute city.
+- Community-interest selection.
+- Privacy and community-guideline acceptance.
+- A short onboarding completion screen.
+
+Use a configurable college verification policy. Support verified college email or an administrator-issued invitation/approval workflow. Do not assume every student has a particular email domain.
+
+Do not grant verified status merely because a user types a college name or checks a box.
+
+Allow a pending-verification state and restrict posting or other privileges according to the configured policy.
+
+## 7. HOME FEED
+
+Build a polished, dynamic home screen.
+
+Include:
+- Personalized feed.
+- Following or joined-community feed.
+- Latest posts.
+- Popular posts.
+- Most discussed posts.
+- Unanswered questions.
+- Trending topics.
+- Community shortcuts.
+- Quick anonymous-post action.
+- Quick commute and local-guide shortcuts.
+- A prominent search bar or search icon.
+
+Each post card should support:
+- Community name and avatar.
+- Author username or anonymous label.
+- Timestamp.
+- Post title and content preview.
+- Optional image.
+- Category and tags.
+- Upvote and downvote controls.
+- Comment count.
+- Save/bookmark action.
+- Share action.
+- Report and more-options menu.
+
+Support pagination or incremental loading, pull-to-refresh, loading skeletons, retry states, and useful empty states.
+
+Make sorting and filtering actually change the displayed results.
+
+Do not display hardcoded counts as if they were live statistics.
+
+## 8. COMMUNITY SYSTEM
+
+Seed the initial interface with these example communities:
+
+- General Campus.
+- Up-Down and Trains.
+- Bharuch Food Guide.
+- PGs and Rooms.
+- Anonymous Confessions.
+- Study Help.
+- Placements and Internships.
+- College Events and Memes.
+
+These are example community names, not pre-existing verified communities.
+
+Implement:
+- Community listing and search.
+- Community details and dedicated feed.
+- Join and leave.
+- Community description, rules, category, and membership count.
+- Community moderators.
+- Pinned posts.
+- Community-specific sorting and filters.
+- Community creation.
+- Community editing by authorized owners or moderators.
+- Community deletion or archival with appropriate safeguards.
+- Moderator appointment and removal.
+- Report-community functionality.
+
+Require a name, unique identifier, description, category, and rules when creating a community.
+
+Apply configurable safeguards against spam communities, impersonation, and abusive names.
+
+## 9. POST CREATION
+
+Create a complete post composer supporting:
+
+- Text posts.
+- Image posts.
+- Questions.
+- Polls.
+- Advice and recommendations.
+- Commute reports.
+- Local place recommendations.
+- Community announcements for authorized moderators.
+
+Allow users to:
+- Select a community.
+- Add a title and body.
+- Add relevant tags.
+- Attach images with previews.
+- Preview the post.
+- Choose their display identity.
+- Publish, save a draft locally, or cancel.
+
+Validate required fields and image constraints.
+
+Use image compression and appropriate upload progress indicators.
+
+Show a confirmation only after the post has actually been saved successfully.
+
+Implement editing and deletion with author or moderator authorization. Handle failed uploads and failed saves without losing the user's draft unnecessarily.
+
+## 10. ANONYMOUS POSTING
+
+Implement an explicit identity selector in the composer:
+
+- Post as my username.
+- Post anonymously.
+
+Anonymous posts and comments must not display the author's ordinary profile, username, avatar, or public profile link.
+
+Optionally assign a non-identifying label such as "Anonymous Student" or a random alias per post.
+
+Maintain the author association privately for authorization, abuse prevention, account deletion, and authorized moderation.
+
+Requirements:
+- Never rely on a client-side anonymity flag alone.
+- Never return private author identifiers in public post responses or UI models.
+- Use restricted backend access or an equivalent trusted design to separate identity information from public content.
+- Do not expose real identity to ordinary community moderators by default.
+- Never promise absolute anonymity.
+- Do not reveal identity through notification previews, analytics, filenames, image metadata, or public API responses.
+- Provide reporting, blocking, and abuse investigation workflows.
+- Ensure editing or deleting anonymous posts does not expose the author.
+- Make anonymous mode visually clear before publication.
+
+If the available client-only architecture cannot securely implement a particular identity-separation requirement, do not claim it is production-secure. Mark the requirement as needing a trusted backend before public release.
+
+## 11. COMMENTS, REPLIES, AND VOTING
+
+Implement:
+- Comments on posts.
+- Threaded replies.
+- Expand and collapse replies.
+- Upvote and downvote posts.
+- Upvote and downvote comments where enabled.
+- Vote removal or switching.
+- Comment editing and deletion.
+- Save and unsave posts.
+- Accepted answers for academic question posts.
+- Helpful-answer marking.
+- Optimistic UI updates with rollback when a server operation fails.
+
+Enforce one current vote per user per post or comment. Prevent duplicate votes and self-voting where appropriate.
+
+Do not calculate trusted vote totals solely from client-provided numbers. Use transactions or trusted backend operations to prevent inconsistent counts and abuse.
+
+## 12. COMMUTE HUB
+
+Create a dedicated Commute tab optimized for students who travel to college from other cities.
+
+Main sections:
+- Route discovery.
+- Saved routes.
+- Train discussions.
+- Recent commute reports.
+- Daily commuter discussions.
+- Commuter groups.
+- Route-specific questions and tips.
+
+Example routes:
+- Vadodara to Bharuch.
+- Surat to Bharuch.
+- Other configurable origin and destination pairs.
+
+Route filters:
+- Origin.
+- Destination.
+- Travel direction.
+- Morning or evening.
+- Date.
+- Train or other transport mode.
+
+Allow users to submit:
+- Train or transport name.
+- Route.
+- Approximate scheduled departure and arrival.
+- Observed delay.
+- Crowd level.
+- Travel experience.
+- General commute tips.
+- Timestamp and optional source.
+- Whether the information is confirmed, estimated, or unverified.
+
+Display the report's timestamp and an appropriate stale-data warning.
+
+Do not represent community-submitted reports as official railway information.
+
+Do not invent live train locations, platform numbers, running status, timetables, or cancellation alerts.
+
+If no official data provider is configured, clearly explain that the information is community-reported.
+
+Provide an opt-in mechanism to join commuter groups. Never expose a user's live location, daily travel routine, or precise home location publicly.
+
+Do not automatically match or reveal people's live travel movements.
+
+## 13. BHARUCH LOCAL GUIDE
+
+Build a discovery experience for:
+- Affordable food and cafes.
+- Tiffin services.
+- PGs and hostels.
+- Rooms for rent.
+- Libraries and study spaces.
+- Stationery and photocopy shops.
+- Daily essentials.
+- Transport and other useful student services.
+
+Each listing can contain:
+- Listing name.
+- Category.
+- Description.
+- Neighbourhood.
+- Approximate public location or map link.
+- Price range.
+- Amenities.
+- Opening hours when available.
+- Contact information when supplied and authorized for publication.
+- Photos.
+- Submitted-by information.
+- Verification status.
+- Student reviews.
+- Helpful votes.
+- Report button.
+
+Implement filters by category, neighbourhood, price, and amenities.
+
+Allow students to submit recommendations and flag outdated information.
+
+Do not fabricate business listings, contact details, ratings, opening hours, or verified status.
+
+Use clearly labelled sample listings only in development mode.
+
+Do not expose a student's private home address or precise personal location.
+
+## 14. SEARCH AND EXPLORE
+
+Implement global search across:
+- Posts.
+- Communities.
+- Public profiles.
+- Commute routes.
+- Local guide listings.
+
+Provide:
+- Search suggestions.
+- Recent searches stored privately on the device where possible.
+- Category filters.
+- Community filters.
+- Sorting.
+- Empty and error states.
+- Clear-search action.
+
+Search results must come from actual application data.
+
+If semantic search or AI summaries are unavailable, provide ordinary keyword search rather than a fake AI-powered interface.
+
+## 15. PROFILES AND REPUTATION
+
+Create public profiles with:
+- Username.
+- Avatar.
+- Optional bio.
+- College affiliation and verified badge.
+- Optional department and academic year.
+- Joined communities.
+- Public posts and comments.
+- Helpful answers.
+- Reputation or karma score.
+- Account age where appropriate.
+
+Provide private settings for:
+- Email and authentication.
+- Notification preferences.
+- Privacy settings.
+- Blocked users.
+- Saved posts.
+- My posts and comments.
+- Account export or deletion request.
+- Sign out.
+
+Never publicly expose authentication credentials, email addresses, roll numbers, phone numbers, private moderation records, or other private account data.
+
+Make reputation understandable and prevent it from becoming a mechanism for harassment or targeted ranking of students.
+
+## 16. MESSAGING
+
+Design a private messaging module with:
+- Inbox.
+- Message requests.
+- One-to-one conversations.
+- Group conversations.
+- Text messages.
+- Optional image attachments.
+- Message timestamps.
+- Read status where appropriate.
+- Unread indicators.
+- Mute and block actions.
+- Report-message functionality.
+- Pagination and real-time updates.
+
+Enforce membership and participant authorization on every read and write.
+
+Users must not be able to read conversations simply by changing a conversation ID.
+
+Provide sensible message-request controls to reduce spam.
+
+Do not claim end-to-end encryption unless it has actually been implemented and independently reviewed.
+
+If the first release cannot support messaging securely, build the interface as a clearly marked planned module and prioritize the core community experience.
+
+## 17. NOTIFICATIONS
+
+Implement in-app notifications for:
+- Replies to my posts.
+- Comments on my posts.
+- Mentions.
+- Reactions where enabled.
+- Accepted answers.
+- Community announcements.
+- Message requests and new messages.
+- Moderation notices and appeal decisions.
+
+Include:
+- Read/unread state.
+- Mark as read.
+- Mark all as read.
+- Notification preferences.
+- Appropriate deep links to the related content.
+
+Use Firebase Cloud Messaging for push notifications when the service is configured.
+
+Avoid sending sensitive anonymous-post identity information or private message contents in notification payloads.
+
+## 18. SAFETY AND MODERATION
+
+Create reporting workflows for:
+- Posts.
+- Comments.
+- Users.
+- Messages.
+- Communities.
+- Local listings.
+
+Report reasons should include:
+- Harassment or bullying.
+- Threats or targeted abuse.
+- Personal information exposure.
+- Impersonation.
+- Spam.
+- Misleading information.
+- Inappropriate or non-consensual imagery.
+- Other policy violations.
+
+Build moderation states:
+- Pending review.
+- Under review.
+- Resolved.
+- Dismissed.
+- Appealed.
+
+Create role-based capabilities for:
+- Student.
+- Community moderator.
+- College administrator.
+- Platform administrator.
+
+Support warnings, content removal, thread locking, temporary suspensions, account bans, appeals, and audit logs.
+
+Protect against unauthorized privilege escalation.
+
+Use a trusted backend for consequential moderation decisions, rate limiting, protected identity lookups, and privileged operations.
+
+AI-based moderation may help prioritize reports but must not automatically make high-impact decisions without appropriate safeguards.
+
+Establish clear community guidelines and an escalation process before inviting real students.
+
+## 19. FIREBASE DATA MODEL
+
+Design a consistent, documented Firestore schema.
+
+Suggested collections:
+
+- users
+- communities
+- communityMemberships
+- posts
+- comments
+- votes
+- polls
+- pollVotes
+- bookmarks
+- follows
+- reports
+- moderationActions
+- conversations
+- messages
+- notifications
+- commuteRoutes
+- commuteReports
+- localListings
+- reviews
+- events
+- appConfig
+
+Add fields appropriate to each entity, such as:
+- Unique document ID.
+- Creation and update timestamps.
+- Author reference.
+- Community reference.
+- Content and category.
+- Moderation status.
+- Privacy and visibility settings.
+- Relevant counters.
+- Pagination or query fields.
+
+Use server-generated timestamps where supported.
+
+Keep private identity mappings, moderation evidence, and sensitive account records separate from public content.
+
+Use transactions, batched writes, or trusted backend operations when multiple related records must change consistently.
+
+Avoid unbounded arrays and oversized documents. Use separate collections for high-volume relationships and messages.
+
+Define necessary Firestore indexes and document the queries that require them.
+
+Do not create a single public collection containing all private user data.
+
+## 20. SECURITY RULES
+
+Generate restrictive Firestore and Storage security rules.
+
+Requirements:
+- Deny access by default where practical.
+- Require authentication for protected operations.
+- Validate field types, lengths, and permitted values.
+- Restrict updates to allowed fields.
+- Prevent users from changing their own role or verification status.
+- Prevent users from editing another user's posts or comments.
+- Enforce community membership and moderator permissions.
+- Restrict conversation access to authorized participants.
+- Prevent public access to private identity mappings.
+- Protect anonymous author associations.
+- Restrict upload types and file sizes.
+- Prevent users from writing arbitrary vote totals, moderation decisions, or trusted counters.
+- Enforce reasonable rate limits through trusted backend mechanisms.
+- Use the Firebase Emulator Suite or equivalent tests to validate access rules.
+
+Security must not depend on hiding buttons in the UI.
+
+If a rule cannot be enforced safely using client-side checks, identify and implement the required trusted backend component rather than claiming the rule is enforced.
+
+## 21. ADMIN AND MODERATOR INTERFACE
+
+Create appropriate protected screens for authorized roles.
+
+Include:
+- Membership verification queue.
+- Community management.
+- Report queue.
+- Report details and resolution actions.
+- Account warnings and suspensions.
+- Appeal management.
+- Community guideline management.
+- Local listing review.
+- Verified announcement publishing.
+- Basic aggregate analytics.
+
+Enforce role checks in the data-access layer and security rules.
+
+Do not allow a user to become an administrator by editing local preferences or a profile field.
+
+## 22. APP SETTINGS
+
+Include:
+- Dark, light, and system themes.
+- Notification preferences.
+- Privacy settings.
+- Blocked accounts.
+- Content preferences.
+- Community guidelines.
+- Terms and privacy policy pages.
+- Help and contact information.
+- Account deletion.
+- Sign out.
+- App version and configuration status.
+
+Use configurable content for legal documents and do not invent a claim that the app is legally compliant merely because a page exists.
+
+## 23. ERROR HANDLING AND PERFORMANCE
+
+Handle:
+- Offline and intermittent network conditions.
+- Authentication failures.
+- Expired sessions.
+- Permission-denied errors.
+- Upload failures.
+- Database failures.
+- Empty search results.
+- Missing or deleted content.
+- Invalid user input.
+- Duplicate submissions.
+- Pagination failures.
+
+Show useful, non-technical error messages and a retry action when appropriate.
+
+Use efficient Firestore queries, pagination, image compression, caching where appropriate, and lifecycle-aware data collection.
+
+Do not load every post, comment, or message into memory at once.
+
+Avoid unnecessary real-time listeners and clean them up when no longer needed.
+
+Never silently swallow exceptions or report a failed operation as successful.
+
+## 24. TESTING REQUIREMENTS
+
+Create and run tests for:
+- Authentication and onboarding.
+- Community creation and joining.
+- Post creation, editing, and deletion.
+- Anonymous display behavior.
+- Voting and duplicate-vote prevention.
+- Comment threading.
+- Search and filters.
+- Bookmarking.
+- Route-report creation.
+- Local listing submission.
+- Role-based access.
+- Unauthorized Firestore reads and writes.
+- Conversation membership.
+- Error and loading states.
+- Navigation and back behavior.
+
+Use unit tests, Compose UI tests, and Firebase Emulator tests where appropriate.
+
+Run the available build and tests, inspect compiler errors, and fix them.
+
+Do not claim tests passed unless they actually ran.
+
+## 25. IMPLEMENTATION STRATEGY
+
+Build in this order:
+
+Phase 1: Project foundation, branding, theme, navigation, splash screen, onboarding, and authentication.
+
+Phase 2: Firestore integration, profile management, communities, feed, posts, comments, voting, and bookmarks.
+
+Phase 3: Anonymous posting with secure identity separation, search, reports, and moderation.
+
+Phase 4: Commute hub and Bharuch local guide.
+
+Phase 5: Notifications and messaging, after their permissions and security are implemented.
+
+Phase 6: Admin tools, performance improvements, accessibility, testing, and release preparation.
+
+Deliver working, testable increments. Do not replace existing functioning code with a complete rewrite when adding a feature.
+
+## 26. REQUIRED DELIVERABLES
+
+Generate:
+- Complete native Android source code.
+- Organized project structure.
+- Reusable UI components.
+- Theme and design system.
+- Navigation graph.
+- Data models and repositories.
+- Firebase configuration integration points.
+- Firestore schema documentation.
+- Firestore and Storage security rules.
+- Required index configuration.
+- Environment and Firebase setup instructions.
+- Test code.
+- A list of incomplete integrations or external dependencies.
+- Build and installation instructions.
+- A concise release checklist.
+
+## 27. FINAL QUALITY BAR
+
+The finished app should look polished, behave consistently, and feel natural on an Android phone.
+
+Prioritize functional completeness over the number of screens.
+
+Every visible interactive element must perform its stated action or be clearly labelled as unavailable.
+
+Do not use fake backend data in production mode, expose private information, hardcode privileged accounts, or fabricate live train information.
+
+Do not declare the app production-ready until authentication, access controls, anonymity, moderation, error handling, and critical user workflows have been tested.
+
+Start by creating the project foundation and the complete visual design system. Then implement the core features in the specified order, preserving a coherent architecture throughout.
